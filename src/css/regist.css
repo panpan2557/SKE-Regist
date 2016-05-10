@@ -1,0 +1,171 @@
+.invalid {
+	margin-top: 20px;
+}
+
+.invalid-login {
+	color: red;
+}
+
+.login-panel-title {
+	font-size: 4em;
+	padding-top: 75px;
+}
+
+.login {
+	position: fixed;
+	text-align: center;
+	width: 100%; 
+	height: 100%;
+	background: linear-gradient(to right, #EDEEC9 , #77BFA3);
+}
+
+.login-panel{
+	margin-top: 40px;
+}
+
+.login-panel-element{
+	margin-top: 10px;
+}
+
+.welcome-banner {
+	background: linear-gradient(to right, #EDEEC9 , #77BFA3); 
+	padding-top: 90px;
+}
+.welcome-upper {
+	text-align: center;
+}
+
+.reg-info {
+	background-color: #DFCA26;
+	/*color: #00000;*/
+}
+
+.my-nav {
+	margin-top: 5px;
+}
+
+.navbar-btn {
+	margin-top: 8px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+
+/*For category panel*/
+.clickable
+    cursor: pointer;   
+}
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+
+.category-heading {
+	background: linear-gradient(to right, #EDEEC9 , #84B082);
+}
+
+.section {
+	padding-bottom: 20px;
+}
+
+.section-label {
+	border-bottom: 1px solid #BDBDBD;
+}
+
+.section-element {
+	padding-top: 5px;
+	vertical-align: middle; 
+}
+
+.course-name {
+	padding-left: 30px;
+	word-wrap: break-word;
+}
+
+.my-navbar {
+	border: none;
+}
+
+.navbar-text {
+	font-size: large;
+}
+
+.total-credit {
+	padding-left: 10px;
+}
+
+.suggestion-panel {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.suggestion {
+	margin-top: 20px;
+	border: solid 1px #BDBDBD;
+	border-radius: 12px;
+	display: inline;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: center;
+}
+
+.line {
+	border-bottom: solid 1px #BDBDBD;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.credit-badge {
+	font-size: 1em;
+}
+
+.exceed-credit {
+	color: red;
+}
+
+.subcategory {
+	padding-right: 20px;
+}
+
+.subcategory-font {
+	font-size: 1em;
+}
+
+.total-credit {
+	border: solid 1px #BDBDBD;
+	border-radius: 12px;
+	display: inline;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: center;
+}
+
+.general-information {
+	margin-bottom: 5px;
+}
+
+.enroll-information-title {
+	margin-top: 15px;
+	border-bottom: 1px solid black;
+}
+
+.enroll-information-element {
+	border-bottom: 1px solid #BDBDBD;
+}
+
+.enroll-information-total {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.report-button:hover {
+
+}
+
+.view-button:hover {
+	
+}

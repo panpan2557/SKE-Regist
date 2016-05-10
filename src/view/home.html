@@ -1,0 +1,192 @@
+<div ng-controller="registerController as regist" class="view-element">
+
+	<div class="login" style="display: none;">
+		<div class="container-fluid">
+			<div class="row login-panel login-panel-title">
+				<div class="col-xs-offset-3 col-xs-6">SKE Registration System</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-offset-3 col-xs-6 lead" style="margin-top: 10px;">Welcome to SKE registration system.<br>Please login with your nontri account with any preferred password.</div>
+			</div>
+			<div class="row">
+				<div class="login-panel-element col-xs-offset-4 col-xs-4"><input type="text" class="input form-control input-lg" placeholder="Username Ex. &quot;b5610545722&quot;" ng-model="username"/></div>
+				<div class="login-panel-element col-xs-offset-4 col-xs-4"><input type="password" class="input form-control input-lg" placeholder="Password" ng-model="password"/></div>
+				<div ng-show="regist.loginStatus == 0 || regist.loginStatus == 2 || regist.loginStatus == 3 || regist.loginStatus == 4" class="invalid col-xs-offset-4 col-xs-4">
+					<p class="invalid-login" ng-show="regist.loginStatus == 0">Please enter a valid username account</p>
+					<p class="invalid-login" ng-show="regist.loginStatus == 2">The system is reserved for SKE student.<br>Please register through the official system.</p>
+					<p class="invalid-login" ng-show="regist.loginStatus == 3">You are not allowed to register through the registration system.<br>Please contact the IUP office for more information.</p>
+					<p class="invalid-login" ng-show="regist.loginStatus == 4">The password is required. Please try again.</p>
+				</div>
+				<div class="login-panel-element col-xs-offset-4 col-xs-4">
+					<button class="login-btn btn btn-default" style="width: 100%;" ng-click="regist.login(username, password)">Login</button>
+				</div>
+			</div>
+			<div class="row">
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="main" style="display: none;">
+		<!-- Modal -->
+		<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Registration Report</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container-fluid">
+		        	<div ng-if="regist.outputType == 0" class="enroll-table">
+		        		<div class="general-information row">
+			        		<div class="col-md-3"><b>Student ID:</b></div>
+			        		<div class="col-md-3">{{regist.user.username.substr(1)}}</div>
+			        		<div class="col-md-2"><b>Year:</b></div>
+			        		<div class="col-md-3">{{regist.user.year}}</div>
+			        	</div>
+			        	<div class="general-information row">
+			        		<div class="col-md-3"><b>Campus:</b></div>
+			        		<div class="col-md-3">Bangkhen</div>
+			        		<div class="col-md-2"><b>Faculty:</b></div>
+			        		<div class="col-md-3">Engineering</div>
+			        	</div>
+			        	<div class="general-information row">
+			        		<div class="col-md-3"><b>Department:</b></div>
+			        		<div class="col-md-7">Software &amp; Knowledge Engineering (E17)</div>
+			        	</div>
+			        	<div class="enroll-information-title row">
+			        		<div class="col-md-3"><b>Course ID</b></div>
+			        		<div class="col-md-5"><b>Course Name</b></div>
+			        		<div class="col-md-2"><b>Section</b></div>
+			        		<div class="col-md-2"><b>Credit</b></div>
+			        	</div>
+			        	<div ng-repeat="enrollCourse in regist.user.courseList" class="enroll-information-element row">
+			        		<div class="col-md-3">{{enrollCourse.courseID}}</div>
+			        		<div class="col-md-5">{{enrollCourse.courseName}}</div>
+			        		<div class="col-md-2">450</div>
+			        		<div class="col-md-2">{{enrollCourse.credit}}</div>
+			        	</div>
+			        	<div class="enroll-information-total row">
+			        		<div class="col-md-offset-3 col-md-3"><b>Total</b></div>
+			        		<div class="col-md-offset-4 col-md-2">{{regist.user.totalCredit}}</div>
+			        	</div>
+		        	</div>
+		        	<div ng-if="regist.outputType == 1" class="enroll-json">
+		        		{{regist.json}}
+		        	</div>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="get-json-button btn btn-primary" ng-show="regist.outputType == 0" ng-click="regist.user.writeJSON()">JSON</button>
+		      	<button type="button" class="get-json-button btn btn-primary" ng-show="regist.outputType == 1" ng-click="regist.changeOutput()">Report</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="my-navbar navbar navbar-default navbar-fixed-top">
+	        <div class="container">
+	          <p class="time navbar-text pull-left"></p>
+	          <p ng-show="regist.user.totalCredit != 22" class="total-credit navbar-text total-credit">Total Credit: {{regist.user.totalCredit}}</p>
+	          <p ng-show="regist.user.totalCredit == 22" class="navbar-text total-credit" style="color: red;">Total Credit: {{regist.user.totalCredit}}</p>
+	          <div class="my-nav nav navbar-nav navbar-right">
+	          	<button type="button" class="navbar-btn btn btn-default report-button" data-toggle="modal" data-target="#reportModal">
+				  Registration Report
+				</button>
+	            <button class="logout-button navbar-btn btn btn-danger"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</button>
+	          </div>
+	        </div>
+	    </div>
+
+		<div class="welcome-banner jumbotron">
+			<div class="container">
+				<div class="welcome-upper">
+					<h1>Welcome <b id="student-id" class="student">{{regist.user.username}}</b></h1>
+					<p>to the SKE Registration System for <span class="reg-info label">Academic Year: 2559</span> <span class="reg-info label">Semester: 1</span></p> 
+				</div>
+			</div>
+		</div>
+
+		<div id="search-panel" class="section container-fluid">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div id="search-input">
+						<div class="input-group col-md-12">
+							<input type="text" class="form-control input-lg" placeholder="Search from any Ex. &quot;knowledge&quot;, &quot;1219271&quot;, &quot;Specific&quot;" ng-model="searchText"/>
+							<span class="input-group-btn">
+								<button class="btn btn-info btn-lg" type="button">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="enroll-section" class="section container-fluid">
+
+			<div id="category-section">
+				<div ng-show="regist.user.year <= 4" class="suggestion-panel">
+					<p class="lead suggestion">Suggestion courses for <b>{{regist.user.year}}{{regist.user.yearSuffix()}}</b> year</p>
+				</div>
+				<div ng-repeat="cat in regist.cats | filter: searchText" class="row">
+					<div class="col-md-offset-2 col-md-8">
+						<div class="category panel panel-default">
+							<div id="{{cat.name}}" class="category-heading panel-heading">
+								<h3 class="panel-title">
+									{{cat.name}}<span id="{{cat.name}}" class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
+								</h3>
+							</div>
+							<div id="{{cat.name}}" class="panel-body" style="display: none;">
+								<div ng-repeat="course in cat.courses | filter: searchText" class="row">
+									<div class="col-md-12">
+										<div id="{{course.courseID}}" class="course panel panel-default">
+											<div class="panel-heading">
+												<div class="row">
+													<div class="col-xs-12 col-lg-1">{{course.courseID}}</div>
+													<div class="course-name col-xs-5 col-lg-5"><h3 class="panel-title">{{course.courseName}}</h3></div>
+													<div class="col-xs-2 col-lg-2"><span class="credit-badge badge">Credit: {{course.credit}}</span></div>
+													<div ng-show="course.subcategory != &quot;&quot;" class="subcategory pull-right"><span class="subcategory-font label label-default">{{course.subcategory}}</span></div>
+												</div>
+											</div>
+											<div class="panel-body">
+												<div class="container-fluid">
+												<div class="section-label row">
+													<div class="col-xs-3">
+														<b>Section</b>
+													</div>
+													<div class="col-xs-3">
+														<b>Availability</b>
+													</div>
+												</div>
+												<div class="section-element row">
+													<div class="col-xs-3">
+														450
+													</div>
+													<div class="col-xs-3">
+														{{course.numberOfStudent}}/50
+													</div>
+													<div class="enrollment-button-group col-xs-offset-3 col-xs-3">
+														<button id="{{course.courseID}}" ng-hide="regist.user.isExceed(course.credit) || regist.user.courseList.includes(course)" class="enroll-button btn btn-sm btn-success" ng-click="regist.user.enroll(course)">Enroll</button>
+														<button id="{{course.courseID}}" ng-show="regist.user.courseList.includes(course) || regist.user.isExceed(course.credit)" class="btn btn-sm btn-default" disabled>Enroll</button>
+														<button id="{{course.courseID}}" ng-show="regist.user.courseList.includes(course)" class="drop-button btn btn-sm btn-danger" ng-click="regist.user.drop(course)">Drop</button>
+														<button id="{{course.courseID}}" ng-show="!regist.user.courseList.includes(course)" class="btn btn-sm btn-default" disabled>Drop</button>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
