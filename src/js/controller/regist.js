@@ -41,7 +41,7 @@ var courses = [
 	{courseName: "Workgroup Software Process Lab",courseID: "1219348",credit: "1",category: "Specific",subcategory: "",recommendation: "3",description: ""},
 	{courseName: "Knowledge Representation",courseID: "1219363",credit: "3",category: "Specific",subcategory: "",recommendation: "3",description: ""}, 
 	{courseName: "Group Dynamic and Psychology",courseID: "1219391",credit: "3",category: "Specific",subcategory: "",recommendation: "3",description: ""}, 
-	{courseName: "Coorperative Education",courseID: "1219490",credit: "9",category: "Specific",subcategory: "",recommendation: "4",description: ""}
+	{courseName: "Cooperative Education",courseID: "1219490",credit: "9",category: "Specific",subcategory: "",recommendation: "4",description: ""}
 ];
 
 //search a course function
